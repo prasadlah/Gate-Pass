@@ -57,9 +57,12 @@ public class OwnerLoginActivity extends AppCompatActivity {
         passwordTextFieldBox.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
             @Override
             public void onTextChanged(String theNewText, boolean isError) {
-                char[] chars = {'@', '$', ' ', '#'};
-                if(theNewText.equals("@") || theNewText.contains(chars.toString())){
-                    passwordTextFieldBox.setError("You Enter Wrong", true);
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        passwordTextFieldBox.setError("You Enter Wrong Value", true);
+                    }
                 }
             }
         });
@@ -70,6 +73,12 @@ public class OwnerLoginActivity extends AppCompatActivity {
                 if(mobileExtendedText.getText().toString().equals("") || mobileExtendedText.getText().toString().equals(null)
                 || passwordExtendedText.getText().toString().equals("") || passwordExtendedText.getText().toString().equals(null)){
                     getMessage("All Fields Are Required!!!");
+                }
+                else if(mobileExtendedText.length() > 10){
+                    mobileTextFieldBox.setError("Incorrect Mobile Number", true);
+                }
+                else if(passwordExtendedText.length() < 8 || passwordExtendedText.length() > 15){
+                    passwordTextFieldBox.setError("Incorrect Password", true);
                 }
                 else {
                     User user = new User();

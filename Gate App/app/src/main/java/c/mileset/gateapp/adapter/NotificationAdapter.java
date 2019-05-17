@@ -1,5 +1,6 @@
 package c.mileset.gateapp.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
+import c.mileset.gateapp.HomeActivity;
 import c.mileset.gateapp.NotificationActivity;
 import c.mileset.gateapp.R;
 import c.mileset.gateapp.model.GatePass;
@@ -23,8 +25,15 @@ import c.mileset.gateapp.viewholder.NotificationViewHolder;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
 
     NotificationActivity notificationActivity;
+    HomeActivity homeActivity;
     ArrayList<UserNotification> userNotificationArrayList;
     ArrayList<GatePass> gatePassArrayList;
+
+    public NotificationAdapter(HomeActivity homeActivity, ArrayList<UserNotification> userNotificationArrayList, ArrayList<GatePass> gatePassArrayList) {
+        this.homeActivity = homeActivity;
+        this.userNotificationArrayList = userNotificationArrayList;
+        this.gatePassArrayList = gatePassArrayList;
+    }
 
     public NotificationAdapter(NotificationActivity notificationActivity, ArrayList<UserNotification> userNotificationArrayList, ArrayList<GatePass> gatePassArrayList) {
         this.notificationActivity = notificationActivity;

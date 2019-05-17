@@ -20,6 +20,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
+import studio.carbonylgroup.textfieldboxes.SimpleTextChangedWatcher;
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -50,6 +51,46 @@ public class ChangePasswordActivity extends AppCompatActivity {
         confirmPasswordExtendedText = (ExtendedEditText) findViewById(R.id.confirm_password_extended_text);
         btnChangePassword = (Button) findViewById(R.id.btnChangePassword);
 
+
+        oldPasswordTextField.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        oldPasswordTextField.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+        newPasswordTextField.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        newPasswordTextField.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+        confirmPasswordTextField.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        confirmPasswordTextField.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+
+
+
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +100,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
                 if(oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()){
                     Toast.makeText(ChangePasswordActivity.this, "All Fields Are Required", Toast.LENGTH_SHORT).show();
+                }
+                else if(oldPasswordExtendedText.length() < 8 && oldPasswordExtendedText.length() > 15){
+                    oldPasswordTextField.setError("Wrong Password", true);
+                }
+                else if(newPasswordExtendedText.length() < 8 && newPasswordExtendedText.length() > 15){
+                    newPasswordTextField.setError("Wrong Password", true);
+                }
+                else if(confirmPasswordExtendedText.length() < 8 && confirmPasswordExtendedText.length() > 15){
+                    confirmPasswordTextField.setError("Wrong Password", true);
                 }
                 else {
                     documentReference.get()

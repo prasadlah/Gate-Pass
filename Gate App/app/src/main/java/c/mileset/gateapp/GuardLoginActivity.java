@@ -46,9 +46,12 @@ public class GuardLoginActivity extends AppCompatActivity {
         passwordTextFieldBox.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
             @Override
             public void onTextChanged(String theNewText, boolean isError) {
-                char[] chars = {'@', '$', ' ', '#'};
-                if(theNewText.equals("@") || theNewText.contains(chars.toString())){
-                    passwordTextFieldBox.setError("You Enter Wrong", true);
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        passwordTextFieldBox.setError("You Enter Wrong Value", true);
+                    }
                 }
             }
         });
@@ -59,6 +62,12 @@ public class GuardLoginActivity extends AppCompatActivity {
                 if(mobileExtendedText.getText().toString().equals("") || mobileExtendedText.getText().toString().equals(null)
                 || passwordExtendedText.getText().toString().equals("") || passwordExtendedText.getText().toString().equals(null)){
                     getMessage("All Fields Required!!!");
+                }
+                else if(mobileExtendedText.length() > 10){
+                    mobileTextFieldBox.setError("Wrong Mobile Number", true);
+                }
+                else if(passwordExtendedText.length() < 8 || passwordExtendedText.length() > 15){
+                    passwordTextFieldBox.setError("Wrong Password", true);
                 }
                 else {
                     String userName, password;
@@ -117,7 +126,7 @@ public class GuardLoginActivity extends AppCompatActivity {
     }
 
     private void getMessage(String message){
-        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void clearAll(){

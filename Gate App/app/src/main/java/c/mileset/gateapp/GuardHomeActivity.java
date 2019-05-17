@@ -37,7 +37,7 @@ import c.mileset.gateapp.model.UserNotification;
 
 public class GuardHomeActivity extends AppCompatActivity {
 
-    private ImageButton ibSetting, ibNotification, ibLogout, ibScanQr;
+    private ImageButton ibSetting, ibLogout;
     private Button btnEdit, btnScanQr;
     private TextView tvName, tvMobileNumber, tvAadharNumber, temp;
     private ImageView imgProfile;
@@ -66,8 +66,6 @@ public class GuardHomeActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
 
         ibSetting = (ImageButton) findViewById(R.id.ibSetting);
-        ibNotification = (ImageButton) findViewById(R.id.ibNotification);
-        ibScanQr = (ImageButton) findViewById(R.id.ibScanQrCode);
         ibLogout = (ImageButton) findViewById(R.id.ibLogout);
         btnEdit = (Button) findViewById(R.id.btnEdit);
         btnScanQr = (Button) findViewById(R.id.btnScanQrCode);

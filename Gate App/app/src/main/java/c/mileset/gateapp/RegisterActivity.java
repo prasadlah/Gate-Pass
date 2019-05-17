@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,14 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +31,6 @@ import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 import studio.carbonylgroup.textfieldboxes.SimpleTextChangedWatcher;
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
-//===============   Validation Required (Pending)     ===============//
 public class RegisterActivity extends AppCompatActivity {
 
     private Spinner spinnerSociety, spinnerWing, spinnerFlatNumber;
@@ -141,6 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                                 else {
                                     Toast.makeText(RegisterActivity.this, "Not present", Toast.LENGTH_SHORT).show();
+                                    spinnerWing.setPrompt("Wing Is Empty");
                                 }
                             }
                         });
@@ -177,6 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                                 else {
                                     Toast.makeText(RegisterActivity.this, "Not Present, empty", Toast.LENGTH_SHORT).show();
+                                    spinnerFlatNumber.setPrompt("Flats are empty");
                                 }
                             }
                         });
@@ -188,6 +182,35 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
+//Validating user date
+        passwordTextFieldBox.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        passwordTextFieldBox.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+
+        confirmPasswordTextFieldBox.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        passwordTextFieldBox.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +220,17 @@ public class RegisterActivity extends AppCompatActivity {
                         || passwordExtendedText.getText().toString().equals("") || passwordExtendedText.getText().toString().equals(null)
                         || confirmPasswordExtendedText.getText().toString().equals("") || confirmPasswordExtendedText.getText().toString().equals(null)) {
                     getMessage("All Fields Are Required!!!");
-                } else {
+                }
+                else if(mobileExtendedText.length() > 10){
+                    mobileTextFieldBox.setError("Incorrect Mobile Number", true);
+                }
+                else if(passwordExtendedText.length() < 8 || passwordExtendedText.length() > 15){
+                    passwordTextFieldBox.setError("Incorrect Password", true);
+                }
+                else if(confirmPasswordExtendedText.length() < 8 || confirmPasswordExtendedText.length() > 15){
+                    confirmPasswordTextFieldBox.setError("Incorrect Password", true);
+                }
+                else {
                     if(mobileExtendedText.getText().length() > 10){
                         getMessage("Wrong Mobile Number!");
                     }

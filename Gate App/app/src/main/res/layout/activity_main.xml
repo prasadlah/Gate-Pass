@@ -21,6 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
+                app:srcCompat="@tools:sample/backgrounds/scenic[0]"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <android.support.constraint.ConstraintLayout
@@ -86,18 +87,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/btnOwnerLogin" />
 
             </android.support.constraint.ConstraintLayout>
-
-            <Button
-                android:id="@+id/btnImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/button_background"
-                android:text="Upload Photo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
 

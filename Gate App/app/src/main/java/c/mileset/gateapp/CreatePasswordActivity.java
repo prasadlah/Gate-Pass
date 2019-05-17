@@ -16,6 +16,7 @@ import com.google.firebase.firestore.Query;
 
 import c.mileset.gateapp.model.User;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
+import studio.carbonylgroup.textfieldboxes.SimpleTextChangedWatcher;
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class CreatePasswordActivity extends AppCompatActivity {
@@ -52,6 +53,32 @@ public class CreatePasswordActivity extends AppCompatActivity {
         confirmPasswordExtendedText = (ExtendedEditText) findViewById(R.id.confirm_password_extended_text);
         btnCreate = (Button) findViewById(R.id.btnCreateNewPassword);
 
+
+        newPasswordTextField.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        newPasswordTextField.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+        confirmPasswordTextField.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String theNewText, boolean isError) {
+                char[] chars = {'@', '$', ' ', '#', '!', '"', '\'', '£', '/', '*', '-', '+'};
+
+                for(char ch : chars) {
+                    if (theNewText.equals(ch)) {
+                        confirmPasswordTextField.setError("You Enter Wrong Value", true);
+                    }
+                }
+            }
+        });
+
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +87,12 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 confirmPassword = confirmPasswordExtendedText.getText().toString().trim();
                 if(newPassword.isEmpty() || confirmPassword.isEmpty()){
                     Toast.makeText(CreatePasswordActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                }
+                else if(newPasswordExtendedText.length() < 8 && newPasswordExtendedText.length() > 15){
+                    newPasswordTextField.setError("Wrong Password", true);
+                }
+                else if(confirmPasswordExtendedText.length() < 8 && confirmPasswordExtendedText.length() > 15){
+                    confirmPasswordTextField.setError("Wrong Password", true);
                 }
                 else {
                     if(newPassword.equals(password)) {

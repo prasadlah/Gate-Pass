@@ -60,30 +60,6 @@
                         android:src="@drawable/setting"
                         tools:src="@drawable/setting" />
 
-                    <ImageButton
-                        android:id="@+id/ibNotification"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/notification"
-                        app:layout_constraintEnd_toStartOf="@+id/ibSetting"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/notification" />
-
-                    <ImageButton
-                        android:id="@+id/ibScanQrCode"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/notification"
-                        app:layout_constraintEnd_toStartOf="@+id/ibNotification"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/notification" />
-
                     <TextView
                         android:id="@+id/tvName"
                         android:layout_width="wrap_content"

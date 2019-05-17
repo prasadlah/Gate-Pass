@@ -13,7 +13,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnOwnerLogin, btnGuardLogin, btnImage;
+    private Button btnOwnerLogin, btnGuardLogin;
 
     ConnectivityManager conMan;
     NetworkInfo.State mobileData;
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
             btnOwnerLogin = (Button) findViewById(R.id.btnOwnerLogin);
             btnGuardLogin = (Button) findViewById(R.id.btnGuardLogin);
-            btnImage = (Button) findViewById(R.id.btnImage);
 
             btnOwnerLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            btnImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, DemoImageUloadAndRetrive.class);
-                    startActivity(intent);
-                }
-            });
         }
         else {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
