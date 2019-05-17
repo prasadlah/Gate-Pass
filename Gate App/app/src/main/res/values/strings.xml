@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">GateApp</string>
+
+    <string name="login">Login</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="forgetPassword">Forget Password</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="forget">Forget</string>
+    <string name="cancel">Cancel</string>
+    <string name="writeUs">Write Us</string>
+    <string name="delete">Delete</string>
+    <string name="subject">Subject</string>
+    <string name="relation">Relation To Owner</string>
+    <string name="occupation">Occupation</string>
+    <string name="save">Save</string>
+    <string name="vehicleNumber">Vehicle Number</string>
+    <string name="visitingTime">Visiting Time</string>
+    <string name="visitingDate">Viiting Date</string>
+    <string name="generatePass">Generate Pass</string>
+    <string name="edit">Edit</string>
+    <string name="changePassword">Change Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="oldPassword">Old Password</string>
+    <string name="createPassword">Create New Password</string>
+    <string name="otp">OTP</string>
+    <string name="verify">Verify</string>
+
+    <string name="profile">Profile</string>
+    <string name="contact">Contact</string>
+    <string name="family">Family</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="feedback">Feedback</string>
+    <string name="complaint">Complaint</string>
+    <string name="notification">Notification</string>
+    <string name="gatePass">Gate Pass</string>
+    <string name="setting">Setting</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>

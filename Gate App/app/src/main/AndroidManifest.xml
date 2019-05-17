@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="c.mileset.gateapp">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".ImagesActivity" />
+        <activity android:name=".GuardHomeActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".DemoImageUloadAndRetrive" />
+        <activity android:name=".CreatePasswordActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".GuardLoginActivity" />
+        <activity android:name=".GatePassActivity" />
+        <activity android:name=".VehicleActivity" />
+        <activity android:name=".FamilyActivity" />
+        <activity android:name=".ComplaintActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ForgetActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".OwnerLoginActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

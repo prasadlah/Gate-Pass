@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "695688806766",
+    "firebase_url": "https://angular-project-d942b.firebaseio.com",
+    "project_id": "angular-project-d942b",
+    "storage_bucket": "angular-project-d942b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695688806766:android:a1c428ef7168190a",
+        "android_client_info": {
+          "package_name": "c.mileset.gateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695688806766-lkjs5kegrmbt30lf68p0mu81pn9ut44l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEfd1BuDOUEM80dREFpZB1efjoaVm0oEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695688806766:android:9fbfa5a76909a911",
+        "android_client_info": {
+          "package_name": "milesetsoft.gateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695688806766-sd7qa0ftqklu7rpbam83gldtds8o5a0q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "milesetsoft.gateapp",
+            "certificate_hash": "a2677b94f7e7c0eaf253f041e6724cb3e22a7253"
+          }
+        },
+        {
+          "client_id": "695688806766-lkjs5kegrmbt30lf68p0mu81pn9ut44l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEfd1BuDOUEM80dREFpZB1efjoaVm0oEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695688806766-lkjs5kegrmbt30lf68p0mu81pn9ut44l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
