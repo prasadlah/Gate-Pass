@@ -17,7 +17,7 @@ android {
         multiDexEnabled true
 
         manifestPlaceholders = [
-                onesignal_app_id: '8c094ad8-ec3e-4022-b210-5b12b55c0fe9',
+                onesignal_app_id               : '8c094ad8-ec3e-4022-b210-5b12b55c0fe9',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
