@@ -1,6 +1,5 @@
 package c.mileset.gateapp.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,24 +12,21 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import c.mileset.gateapp.HomeActivity;
-import c.mileset.gateapp.NotificationActivity;
 import c.mileset.gateapp.R;
 import c.mileset.gateapp.model.GatePass;
 import c.mileset.gateapp.model.UserNotification;
 import c.mileset.gateapp.viewholder.NotificationViewHolder;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
+public class NotificationAdapter1 extends RecyclerView.Adapter<NotificationViewHolder> {
 
-    NotificationActivity notificationActivity;
     HomeActivity homeActivity;
     ArrayList<UserNotification> userNotificationArrayList;
     ArrayList<GatePass> gatePassArrayList;
 
-    public NotificationAdapter(NotificationActivity notificationActivity, ArrayList<UserNotification> userNotificationArrayList, ArrayList<GatePass> gatePassArrayList) {
-        this.notificationActivity = notificationActivity;
+    public NotificationAdapter1(HomeActivity homeActivity, ArrayList<UserNotification> userNotificationArrayList, ArrayList<GatePass> gatePassArrayList) {
+        this.homeActivity = homeActivity;
         this.userNotificationArrayList = userNotificationArrayList;
         this.gatePassArrayList = gatePassArrayList;
     }
@@ -38,7 +34,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
     @NonNull
     @Override
     public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater = LayoutInflater.from(notificationActivity.getBaseContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(homeActivity.getBaseContext());
         View view = layoutInflater.inflate(R.layout.notification_layout, viewGroup, false);
         return new NotificationViewHolder(view);
     }
@@ -54,8 +50,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         notificationViewHolder.btnAllow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notificationActivity.mFirestore.collection("Register")
-                        .document(notificationActivity.getIntent().getStringExtra("userId"))
+                homeActivity.mFirestore.collection("Register")
+                        .document(homeActivity.getIntent().getStringExtra("userId"))
                         .collection("Notification")
                         .document(userNotificationArrayList.get(i).getNotificationId())
                         .update("permission", 1)
@@ -63,7 +59,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Log.v("Success : ", "Visitor Allowed");
-                                Toast.makeText(notificationActivity, "Visited Allowed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(homeActivity, "Visited Allowed", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -78,8 +74,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         notificationViewHolder.btnDeny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String userId = notificationActivity.getIntent().getStringExtra("userId");
-                notificationActivity.mFirestore.collection("Register")
+                final String userId = homeActivity.getIntent().getStringExtra("userId");
+                homeActivity.mFirestore.collection("Register")
                         .document(userId)
                         .collection("Notification")
                         .document(userNotificationArrayList.get(i).getNotificationId())
@@ -88,8 +84,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Log.v("Success : ", "Visitor Not Allowed");
-                                Toast.makeText(notificationActivity, "Visited Not Allowed", Toast.LENGTH_SHORT).show();
-                                notificationActivity.getNotification(userId);
+                                Toast.makeText(homeActivity, "Visited Not Allowed", Toast.LENGTH_SHORT).show();
+                                homeActivity.getNotification(userId);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -107,3 +103,4 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         return userNotificationArrayList.size();
     }
 }
+

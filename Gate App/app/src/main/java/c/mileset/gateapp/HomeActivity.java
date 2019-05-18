@@ -19,8 +19,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,15 +27,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
-import c.mileset.gateapp.adapter.NotificationAdapter;
+import c.mileset.gateapp.adapter.NotificationAdapter1;
 import c.mileset.gateapp.model.GatePass;
 import c.mileset.gateapp.model.UserNotification;
 
@@ -51,12 +43,12 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerNotification;
     private Intent intent;
 
-    FirebaseFirestore mFirestore;
+    public FirebaseFirestore mFirestore;
     UserNotification userNotification;
     GatePass gatePass;
     ArrayList<UserNotification> userNotificationArrayList;
     ArrayList<GatePass> gatePassArrayList;
-    NotificationAdapter notificationAdapter;
+    NotificationAdapter1 notificationAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,7 +221,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 userNotificationArrayList.add(userNotification);
                                                 gatePassArrayList.add(gatePass);
 
-                                                notificationAdapter = new NotificationAdapter(HomeActivity.this, userNotificationArrayList, gatePassArrayList);
+                                                notificationAdapter = new NotificationAdapter1(HomeActivity.this, userNotificationArrayList, gatePassArrayList);
                                                 recyclerNotification.setAdapter(notificationAdapter);
                                             }
                                         }
