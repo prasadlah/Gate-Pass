@@ -53,7 +53,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                     Toast.makeText(ChangeEmailActivity.this, "All Fields Required", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(oldEmailExtendedEditText.getText().equals(newEmailExtendedEditText.getText())){
+                    if(newEmailExtendedEditText.getText().equals(oldEmailExtendedEditText.getText())){
                         Toast.makeText(ChangeEmailActivity.this, "Both Mobile Numbers Are Same..", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -61,13 +61,13 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String mobileNumber = documentSnapshot.getString("email");
-                                        if(mobileNumber.equals(oldEmailExtendedEditText.getText())){
+                                        String email = documentSnapshot.getString("email");
+                                        if(oldEmailExtendedEditText.getText().toString().equals(email)){
                                             changeEmail(newEmailExtendedEditText.getText().toString());
                                             clearAll();
                                         }
                                         else {
-                                            Toast.makeText(ChangeEmailActivity.this, "Mobile Number Not Found", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ChangeEmailActivity.this, "Email Not Found", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 })

@@ -83,7 +83,7 @@ public class GuardLoginActivity extends AppCompatActivity {
 
     private void validateGuard(final String userName, final String password){
 
-        if(userName.equals("12") && password.equals("12")){
+        if(userName.equals("1111111111") && password.equals("11111111")){
             Intent intent = new Intent(GuardLoginActivity.this, GuardHomeActivity.class);
             intent.putExtra("userName", userName);
             startActivity(intent);
