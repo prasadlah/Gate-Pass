@@ -182,6 +182,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         getDate(userId);
+        setRecycler();
         getNotification(userId);
     }
 
