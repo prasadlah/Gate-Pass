@@ -59,7 +59,7 @@ public class ChangeMobileNumberActivity extends AppCompatActivity {
                     newMobileNumberTextFieldBox.setError("Wrong Mobile number", true);
                 }
                 else {
-                    if(oldMobileNumberExtendedEditText.getText().equals(newMobileNumberExtendedEditText.getText())){
+                    if(newMobileNumberExtendedEditText.getText().equals(oldMobileNumberExtendedEditText.getText())){
                         Toast.makeText(ChangeMobileNumberActivity.this, "Both Mobile Numbers Are Same..", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -68,7 +68,7 @@ public class ChangeMobileNumberActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         String mobileNumber = documentSnapshot.getString("mobileNumber");
-                                        if(mobileNumber.equals(oldMobileNumberExtendedEditText.getText())){
+                                        if(oldMobileNumberExtendedEditText.getText().toString().equals(mobileNumber)){
                                             changeMobileNumber(newMobileNumberExtendedEditText.getText().toString());
                                             clearAll();
                                         }

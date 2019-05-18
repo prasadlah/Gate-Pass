@@ -146,14 +146,18 @@ public class ProfileActivity extends AppCompatActivity {
         tvChangeMobileNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                intent = new Intent(ProfileActivity.this, ChangeMobileNumberActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 
         tvChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                intent = new Intent(ProfileActivity.this, ChangeEmailActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 
