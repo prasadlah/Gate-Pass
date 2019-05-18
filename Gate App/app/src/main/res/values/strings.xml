@@ -3,11 +3,17 @@
 
     <string name="login">Login</string>
     <string name="mobileNumber">Mobile Number</string>
+    <string name="oldMobileNumber">Old Mobile Number</string>
+    <string name="newMobileNumber">New Mobile Number</string>
+    <string name="changeMobileNumber">Change Mobile Number</string>
     <string name="password">Password</string>
     <string name="forgetPassword">Forget Password</string>
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
+    <string name="oldEmail">Old Email</string>
+    <string name="newEmail">New Email</string>
+    <string name="changeEmail">Change Email</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="forget">Forget</string>
     <string name="cancel">Cancel</string>

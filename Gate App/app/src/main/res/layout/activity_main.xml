@@ -21,7 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@tools:sample/backgrounds/scenic[0]"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <android.support.constraint.ConstraintLayout

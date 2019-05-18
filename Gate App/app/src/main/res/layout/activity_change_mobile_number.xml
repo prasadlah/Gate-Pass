@@ -27,7 +27,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Change Mobile Number"
+                    android:text="@string/changeMobileNumber"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="40sp"
@@ -44,14 +44,14 @@
                 android:layout_height="wrap_content">
 
                 <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-                    android:id="@+id/mobile_text_field_box"
+                    android:id="@+id/old_mobile_text_field_box"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/text_background"
-                    app:labelText="@string/mobileNumber"
+                    app:labelText="@string/oldMobileNumber"
                     app:hasClearButton="true"
                     app:useDenseSpacing="true"
                     app:minCharacters="10"
@@ -61,25 +61,51 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                        android:id="@+id/mobile_extended_text"
+                        android:id="@+id/old_mobile_extended_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"/>
 
                 </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
+                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/new_mobile_text_field_box"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/text_background"
+                    app:hasClearButton="true"
+                    app:labelText="@string/newMobileNumber"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/old_mobile_text_field_box"
+                    app:maxCharacters="10"
+                    app:minCharacters="10"
+                    app:useDenseSpacing="true">
+
+                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:id="@+id/new_mobile_extended_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
                 <Button
-                    android:id="@+id/btnGenerateOtp"
+                    android:id="@+id/btnChangeMobileNumber"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/button_background"
-                    android:text="@string/forget"
+                    android:text="@string/changeMobileNumber"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mobile_text_field_box" />
+                    app:layout_constraintTop_toBottomOf="@+id/new_mobile_text_field_box" />
 
                 <View
                     android:id="@+id/view2"
@@ -91,7 +117,7 @@
                     android:background="#ffffff"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnGenerateOtp" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnChangeMobileNumber" />
 
             </android.support.constraint.ConstraintLayout>
 
