@@ -49,7 +49,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         notificationViewHolder.tvMobileNumber.setText(gatePassArrayList.get(i).getMobile());
         System.out.println("email: "+gatePassArrayList.get(i).getEmail());
         notificationViewHolder.tvEmail.setText(gatePassArrayList.get(i).getEmail());
-        notificationViewHolder.tvScanDate.setText(userNotificationArrayList.get(i).getScan_time());
 
         notificationViewHolder.btnAllow.setOnClickListener(new View.OnClickListener() {
             @Override

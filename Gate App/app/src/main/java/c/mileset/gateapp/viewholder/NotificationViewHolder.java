@@ -10,14 +10,13 @@ import c.mileset.gateapp.R;
 
 public class NotificationViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView tvVisitorName, tvScanDate, tvMobileNumber, tvEmail;
+    public TextView tvVisitorName, tvMobileNumber, tvEmail;
     public Button btnAllow, btnDeny;
 
     public NotificationViewHolder(@NonNull View itemView) {
         super(itemView);
 
         tvVisitorName = (TextView) itemView.findViewById(R.id.tvVisitorName);
-        tvScanDate = (TextView) itemView.findViewById(R.id.tvScanDate);
         tvMobileNumber = (TextView) itemView.findViewById(R.id.tvMobileNumber);
         tvEmail = (TextView) itemView.findViewById(R.id.tvEmail);
         btnAllow = (Button) itemView.findViewById(R.id.btnAllow);

@@ -74,7 +74,6 @@ public class NotificationActivity extends AppCompatActivity {
                             userNotification = new UserNotification();
                             userNotification.setNotificationId(queryDocumentSnapshot.getId());
                             userNotification.setPass_id(queryDocumentSnapshot.getString("pass_id"));
-                            userNotification.setScan_time(queryDocumentSnapshot.getString("scan_time"));
 
                             final DocumentReference documentReference;
                             documentReference = mFirestore.collection("Register")
