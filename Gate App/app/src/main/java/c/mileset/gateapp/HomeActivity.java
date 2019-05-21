@@ -27,7 +27,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Document;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import c.mileset.gateapp.adapter.NotificationAdapter1;
 import c.mileset.gateapp.model.GatePass;
@@ -49,6 +56,19 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<UserNotification> userNotificationArrayList;
     ArrayList<GatePass> gatePassArrayList;
     NotificationAdapter1 notificationAdapter;
+
+    Calendar calendar = Calendar.getInstance();
+    int currentDay, currentMonth, currentYear, currentMinute, currentHour;
+    String currentDate, currentTime;
+    SimpleDateFormat simpleDateFormat;
+    Date cur_date;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setRecycler();
+        getNotification(getIntent().getStringExtra("userId"));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +196,7 @@ public class HomeActivity extends AppCompatActivity {
         getDate(userId);
         setRecycler();
         getNotification(userId);
+        getCurrentDate();
     }
 
     private void setRecycler(){
@@ -184,7 +205,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void getNotification(final String userId){
-
         userNotificationArrayList.clear();
         gatePassArrayList.clear();
 
@@ -281,6 +301,74 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(HomeActivity.this, "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    protected void getCurrentDate(){
+        final DocumentReference documentReference = mFirestore.collection("Register")
+                .document(getIntent().getStringExtra("userId"));
+
+        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentYear = calendar.get(Calendar.YEAR);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        try {
+            cur_date = sdf.parse(currentDate);
+            System.out.println("Current Date = " + cur_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        documentReference.collection("Gate Pass")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot querySnapshot) {
+                        for(final QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot){
+                            final String gp_id = queryDocumentSnapshot.getId();
+                            String pass_date = queryDocumentSnapshot.getString("visit_date");
+                            System.out.println("Date = " + pass_date);
+                            try {
+                                Date date1 = simpleDateFormat.parse(pass_date);
+                                System.out.println("Parsed Date = " + date1);
+
+                                if(date1.before(cur_date)){
+
+                                    documentReference.collection("Gate Pass")
+                                            .document(gp_id)
+                                            .delete()
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.v("Sussess", gp_id + " Deleted");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.v("Error : ", e.getMessage());
+                                                    System.out.println("Error : " + e.getMessage());
+                                                }
+                                            });
+                                }
+                                else {
+                                    Log.v("Not Deleted", gp_id + "Not Deleted");
+                                }
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Error = " + e.getMessage());
                     }
                 });
     }

@@ -43,7 +43,7 @@ public class SendSms extends AsyncTask<String, String, String> {
             System.out.println("pa" + parameters);
             sss = parameters.getBytes();
 
-            url = new URL("http://smsalertbox.com/api/sms.php");
+            url = new URL("http://smsalertbox.com/api/sms.php?" + parameters);
             urlConnection = url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.setDoInput(true);

@@ -233,14 +233,26 @@ public class GatePassActivity extends AppCompatActivity {
         visitDate = new DatePickerDialog(GatePassActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                month = month + 1;
-                if(dayOfMonth < currentDay && month < currentMonth && year < currentYear){
-                    getMessage("You select wrong date");
+                month = month + 1;
+
+                if(year < currentYear){
+                    getMessage("You Select Wromg Year");
                 }
                 else {
-                    String date = dayOfMonth + "/" + month + "/" + year;
-                    visitDateExtendedText.setText(date);
+                    if(month < currentMonth){
+                        getMessage("You Select Wrong Month");
+                    }
+                    else {
+                        if (currentDay > dayOfMonth){
+                            getMessage("You Select Wrong Day");
+                        }
+                        else {
+                            String date = dayOfMonth + "/" + month + "/" + year;
+                            visitDateExtendedText.setText(date);
+                        }
+                    }
                 }
+
             }
         }, currentYear, currentMonth, currentDay);
 

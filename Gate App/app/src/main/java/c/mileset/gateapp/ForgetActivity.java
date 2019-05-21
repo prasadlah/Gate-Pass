@@ -82,8 +82,8 @@ public class ForgetActivity extends AppCompatActivity {
                             public void onSuccess(QuerySnapshot querySnapshots) {
                                 strOtp = "2121";
                                 sendSms = new SendSms(mobileNumber, strOtp);
-                                //sendSms.send();
-                                sendSms.execute();
+                                sendSms.send();
+//                                sendSms.execute();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
