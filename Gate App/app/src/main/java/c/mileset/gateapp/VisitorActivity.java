@@ -46,6 +46,7 @@ public class VisitorActivity extends AppCompatActivity {
 
         intent = new Intent();
         intent = getIntent();
+        String userId = intent.getStringExtra("userId");
 //        gatePass = new GatePass();
         gatePassArrayList = new ArrayList<GatePass>();
         mFirestore = FirebaseFirestore.getInstance();
@@ -53,7 +54,7 @@ public class VisitorActivity extends AppCompatActivity {
         visitorRecyclerView = (RecyclerView) findViewById(R.id.visitorRecycler);
 
         setRecycler();
-        getData();
+        getData(userId);
     }
 
     protected void setRecycler(){
@@ -61,50 +62,34 @@ public class VisitorActivity extends AppCompatActivity {
         visitorRecyclerView.setLayoutManager(new LinearLayoutManager(VisitorActivity.this, LinearLayout.VERTICAL, false));
     }
 
-    protected void getData(){
+    protected void getData(String userId){
         gatePassArrayList.clear();
         final CollectionReference collectionReference;
         collectionReference = mFirestore.collection("Register")
-                .document(getIntent().getStringExtra("userId"))
+                .document(userId)
                 .collection("Gate Pass");
         collectionReference.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot querySnapshot) {
-                        for(final QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot){
+                        for (final QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot) {
                             String regId = queryDocumentSnapshot.getId();
-                            collectionReference.document(regId)
-                                    .collection("Gate Pass")
-                                    .get()
-                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onSuccess(QuerySnapshot querySnapshot_1) {
-                                            for(QueryDocumentSnapshot queryDocumentSnapshot_1 : querySnapshot_1) {
-                                                gatePass = new GatePass();
-                                                gatePass.setName(queryDocumentSnapshot_1.getString("name"));
-                                                gatePass.setEmail(queryDocumentSnapshot_1.getString("email"));
-                                                gatePass.setMobile(queryDocumentSnapshot_1.getString("mobile"));
-                                                gatePass.setVisit_date(queryDocumentSnapshot_1.getString("visit_date"));
-
-                                                System.out.println("\n\n ======================");
-                                                System.out.println("Name : " + gatePass.getName());
-                                                System.out.println("Email : " + gatePass.getEmail());
-                                                System.out.println("Mobile : " + gatePass.getMobile());
-                                                System.out.println("Visit Date : " + gatePass.getVisit_date());
-                                                System.out.println("\n\n");
-                                                gatePassArrayList.add(gatePass);
-                                            }
-                                            visitorAdapter = new VisitorAdapter(VisitorActivity.this, gatePassArrayList);
-                                            visitorRecyclerView.setAdapter(visitorAdapter);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            System.out.println("Error : " + e.getMessage());
-                                        }
-                                    });
+                            gatePass = new GatePass();
+                            gatePass.setName(queryDocumentSnapshot.getString("name"));
+                            gatePass.setEmail(queryDocumentSnapshot.getString("email"));
+                            gatePass.setMobile(queryDocumentSnapshot.getString("mobile"));
+                            gatePass.setVisit_date(queryDocumentSnapshot.getString("visit_date"));
+                            System.out.println("\n\n ======================");
+                            System.out.println("Name : " + gatePass.getName());
+                            System.out.println("Email : " + gatePass.getEmail());
+                            System.out.println("Mobile : " + gatePass.getMobile());
+                            System.out.println("Visit Date : " + gatePass.getVisit_date());
+                            System.out.println("\n\n");
+                            gatePassArrayList.add(gatePass);
                         }
+
+                        visitorAdapter = new VisitorAdapter(VisitorActivity.this, gatePassArrayList);
+                        visitorRecyclerView.setAdapter(visitorAdapter);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
