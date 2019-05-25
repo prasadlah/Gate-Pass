@@ -126,7 +126,9 @@ public class HomeActivity extends AppCompatActivity {
         visitorLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                intent = new Intent(HomeActivity.this, VisitorActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 
