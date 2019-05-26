@@ -50,7 +50,6 @@ public class ComplaintActivity extends AppCompatActivity {
         intent = getIntent();
         mFirestore = FirebaseFirestore.getInstance();
         complaintArrayList = new ArrayList<Complaint>();
-        complaint = new Complaint();
 
         subjectTextField = (TextFieldBoxes) findViewById(R.id.subject_text_field_box);
         complaintTextField = (TextFieldBoxes) findViewById(R.id.complaint_text_field_box);
@@ -62,6 +61,8 @@ public class ComplaintActivity extends AppCompatActivity {
         btnUriteUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                complaint = new Complaint();
+
                 if(subjectExtendedText.getText().toString().equals("") || subjectExtendedText.getText().toString().equals(null)
                 || complaintExtendedText.getText().toString().equals("") || complaintExtendedText.getText().toString().equals(null)){
                     getMessage("All Fields Are Required");
@@ -121,6 +122,8 @@ public class ComplaintActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(QuerySnapshot querySnapshot) {
                                         for(QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot){
+                                            complaint = new Complaint();
+
                                             complaint.setC_id(queryDocumentSnapshot.getId());
                                             complaint.setSubject(queryDocumentSnapshot.getString("subject"));
                                             complaint.setComplaint(queryDocumentSnapshot.getString("complaint"));

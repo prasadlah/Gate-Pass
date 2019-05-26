@@ -53,12 +53,13 @@ public class FeedbackActivity extends AppCompatActivity {
         btnWriteUs = (Button) findViewById(R.id.btnWriteUs);
         recyclerFeedback = (RecyclerView) findViewById(R.id.recyclerFeedback);
 
-        feedback = new Feedback();
         feedbackArrayList = new ArrayList<Feedback>();
 
         btnWriteUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                feedback = new Feedback();
+
                 feedback.setFeedback(feedbackExtendedText.getText().toString().trim());
                 giveFeedback(feedback);
                 getData();
@@ -113,7 +114,7 @@ public class FeedbackActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(QuerySnapshot querySnapshot) {
                                         for (QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot) {
-                                            Feedback feedback = new Feedback();
+                                            feedback = new Feedback();
                                             feedback.setId(queryDocumentSnapshot.getId());
                                             feedback.setFeedback(queryDocumentSnapshot.getString("feedback"));
 

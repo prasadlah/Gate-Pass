@@ -48,7 +48,6 @@ public class VehicleActivity extends AppCompatActivity {
 
         intent = getIntent();
         mFirestore = FirebaseFirestore.getInstance();
-        vehicle = new Vehicle();
         vehicleArrayList = new ArrayList<Vehicle>();
 
         tvVehicleId = (TextView) findViewById(R.id.tv_vehicle_id);
@@ -60,6 +59,7 @@ public class VehicleActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vehicle = new Vehicle();
                 if (tvVehicleId.getText().toString().equals("") || tvVehicleId.getText().toString().equals(null)) {
                     if (vehicleNumberExtendedText.getText().toString().equals("") || vehicleNumberExtendedText.getText().toString().equals(null)) {
                         getMessage("All Fields Are Required!!!");
@@ -146,6 +146,7 @@ public class VehicleActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(QuerySnapshot querySnapshot) {
                                         for (QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot){
+                                            vehicle = new Vehicle();
                                             vehicle.setId(queryDocumentSnapshot.getId());
                                             vehicle.setVehicleNumber(queryDocumentSnapshot.getString("vehicleNumber"));
 

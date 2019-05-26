@@ -46,8 +46,8 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/delete"
-            tools:srcCompat="@drawable/delete" />
+            app:srcCompat="@drawable/rubbish"
+            tools:srcCompat="@drawable/rubbish" />
 
         <View
             android:id="@+id/view"

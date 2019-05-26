@@ -3,6 +3,7 @@ package c.mileset.gateapp;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -31,7 +32,9 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,6 +60,7 @@ public class GatePassActivity extends AppCompatActivity {
 
     String savePath;
     Bitmap bitmap;
+    BitmapDrawable bitmapDrawable;
     QRGEncoder qrgEncoder;
 
     Calendar calendar = Calendar.getInstance();
@@ -154,7 +158,9 @@ public class GatePassActivity extends AppCompatActivity {
                 gatePass.setPass_date(currentDate);
                 gatePass.setPass_time(currentTime);
                 gatePass.setPass_code(gatePass.getPass_code());
-                saveGatePass(gatePass);
+//                saveGatePass(gatePass);
+
+                share();
             }
         });
 
@@ -162,16 +168,18 @@ public class GatePassActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                clearAll();
-                BitmapDrawable dr = (BitmapDrawable) imgQrCode.getDrawable();
-                Bitmap bmp = dr.getBitmap();
+                bitmapDrawable = (BitmapDrawable) imgQrCode.getDrawable();
+                Bitmap bmp = bitmapDrawable.getBitmap();
+
                 FileOutputStream fos = null;
 
                 File sdCard = Environment.getExternalStorageDirectory();
-                File dir = new File(sdCard.getAbsolutePath() + "/QrImages");
+                File dir = new File(sdCard.getAbsolutePath() + "/DCIM/QeImage");
                 dir.mkdir();
                 String fileName = String.format("%d.jpg",System.currentTimeMillis());
                 File outFile = new File(dir, fileName);
                 Toast.makeText(GatePassActivity.this, "Image Saved", Toast.LENGTH_SHORT).show();
+
                 try{
                     fos = new FileOutputStream(outFile);
                     bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
@@ -181,6 +189,12 @@ public class GatePassActivity extends AppCompatActivity {
                     Intent i = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                     i.setData(Uri.fromFile(outFile));
                     sendBroadcast(i);
+                }
+                catch (FileNotFoundException f){
+                    f.printStackTrace();
+                }
+                catch (IOException ie){
+                    ie.printStackTrace();
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -300,5 +314,23 @@ public class GatePassActivity extends AppCompatActivity {
             stringBuilder.append(random.nextInt(96) + 32);
         }
         return String.valueOf(stringBuilder+mobile);
+    }
+
+    protected void share(){
+        bitmapDrawable = (BitmapDrawable) imgQrCode.getDrawable();
+        Bitmap bmp = bitmapDrawable.getBitmap();
+
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setPackage("com.whatsapp");
+        shareIntent.setType("image/*");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        try {
+            startActivity(shareIntent);
+        }
+        catch (ActivityNotFoundException a){
+            a.printStackTrace();
+        }
+        shareIntent.putExtra(Intent.EXTRA_STREAM, bmp);
     }
 }

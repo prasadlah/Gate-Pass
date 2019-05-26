@@ -76,7 +76,6 @@ public class FamilyActivity extends AppCompatActivity {
 
         mFirestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference("Register").child(userId);
-        family = new Family();
         familyArrayList = new ArrayList<Family>();
 
         lblId = (TextView) findViewById(R.id.lblId);
@@ -109,6 +108,8 @@ public class FamilyActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                family = new Family();
+
                 if(lblId.getText().toString().isEmpty() || lblId.getText().toString().equals(null)) {
                     if (nameExtendedText.getText().toString().equals(null)
                             || emailExtendedText.getText().toString().equals(null)
@@ -313,6 +314,8 @@ public class FamilyActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot querySnapshot) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : querySnapshot){
+                            family = new Family();
+
                             family.setId(queryDocumentSnapshot.getId());
                             family.setName(queryDocumentSnapshot.getString("name"));
                             family.setEmail(queryDocumentSnapshot.getString("email"));

@@ -46,8 +46,8 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/delete"
-            tools:srcCompat="@drawable/delete" />
+            app:srcCompat="@drawable/rubbish"
+            tools:srcCompat="@drawable/rubbish" />
 
         <ImageButton
             android:id="@+id/ibEdit"
@@ -55,12 +55,12 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="@string/delete"
+            android:contentDescription="@string/edit"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toStartOf="@+id/ibDelete"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/delete"
-            tools:srcCompat="@drawable/delete" />
+            app:srcCompat="@drawable/pencil"
+            tools:srcCompat="@drawable/pencil" />
 
         <View
             android:id="@+id/view"
