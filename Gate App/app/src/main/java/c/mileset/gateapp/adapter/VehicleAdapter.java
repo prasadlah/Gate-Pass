@@ -56,7 +56,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleViewHolder> {
             public void onClick(View v) {
                 vehicleActivity.mFirestore.collection("Register")
                         .document(vehicleActivity.getIntent().getStringExtra("userId"))
-                        .collection("Complaints")
+                        .collection("Vehicle")
                         .document(vehicleArrayList.get(i).getId())
                         .delete()
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
