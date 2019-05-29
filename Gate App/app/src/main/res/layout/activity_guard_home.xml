@@ -29,7 +29,6 @@
                         android:id="@+id/imgProfile"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:layout_marginStart="8dp"
                         android:layout_marginTop="2dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -41,11 +40,10 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginEnd="8dp"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/logout"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/logout"
                         tools:src="@drawable/logout" />
 
                     <ImageButton
@@ -64,7 +62,7 @@
                         android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="75dp"
                         android:text="Prasad Lahoti"
                         android:textSize="18sp"
@@ -99,7 +97,6 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="4dp"
                         android:layout_marginBottom="8dp"
                         android:text="@string/edit"
                         android:textAllCaps="false"
