@@ -230,6 +230,7 @@ public class GuardHomeActivity extends AppCompatActivity {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+                                            temp.setText("Pass Is Not Valid! \n This Pass Expire!");
                                             System.out.println(" \n\n\n\n Error : " + e.getMessage() + "\n\n\n\n");
                                         }
                                     });
